@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StockMock Trading UI</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Header styles */
+    .custom-header {
+      background-color: #f0f8ff; /* Light blue */
+      padding: 10px 20px;
+      border-bottom: 2px solid #ddd;
+      font-size: 18px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .custom-header .logo {
+      font-size: 24px;
+      color: #007bff; /* Primary blue */
+      font-weight: bold;
+    }
+
+    /* Sidebar styles */
+    .custom-sidebar {
+      background-color: #f8f9fa;
+      border-right: 1px solid #ddd;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .custom-sidebar h5 {
+      font-size: 16px;
+      font-weight: bold;
+      color: #007bff;
+      margin-bottom: 15px;
+    }
+    .custom-sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+    .custom-sidebar ul li {
+      margin: 10px 0;
+    }
+    .custom-sidebar ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .custom-sidebar ul li a:hover {
+      color: #007bff;
+    }
+
+    /* Content area styles */
+    .content-area {
+      padding: 20px;
+    }
+    .content-area .card {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .form-label {
+      font-weight: 500;
+      font-size: 14px;
+    }
+    .btn-group label {
+      min-width: 80px;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #f0f8ff;
+      border-top: 1px solid #ddd;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-3 custom-sidebar">
+        <h5>Strategies</h5>
+        <ul>
+          <li><a href="#">Straddle Width +/- 1%</a></li>
+          <li><a href="#">Short ATM +/- 1%</a></li>
+          <li><a href="#">Short CP 100</a></li>
+          <li><a href="#">Short CP As 25%SP</a></li>
+          <li><a href="#">Expiry Day Strategy</a></li>
+          <li><a href="#">Short Strangle</a></li>
+          <li><a href="#">Long Strangle</a></li>
+          <li><a href="#">Iron Butterfly</a></li>
+          <li><a href="#">Bull Call Spread</a></li>
+        </ul>
+      </div>
+
+      <!-- Main Content -->
+      <div class="col-md-9">
+        <!-- Header -->
+        <div class="custom-header">
+          <span class="logo">StockMock</span>
+          <div>
+            <button class="btn btn-outline-primary btn-sm">Dashboard</button>
+            <button class="btn btn-outline-primary btn-sm">Portfolio</button>
+          </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="content-area">
+          <div class="card p-4">
+            <h4 class="mb-4">Options Trading Dashboard</h4>
+            <form>
+              <div class="row mb-3">
+                <div class="col-md-3">
+                  <label for="indexSelect" class="form-label">Select Index</label>
+                  <select class="form-select" id="indexSelect">
+                    <option value="Nifty">Nifty</option>
+                    <option value="BankNifty">Bank Nifty</option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <label for="segmentSelect" class="form-label">Select Segment</label>
+                  <select class="form-select" id="segmentSelect">
+                    <option value="Futures">Futures</option>
+                    <option value="Options">Options</option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <label for="optionType" class="form-label">Option Type</label>
+                  <div class="btn-group" role="group">
+                    <input type="radio" class="btn-check" name="optionType" id="callOption" autocomplete="off" checked>
+                    <label class="btn btn-outline-primary" for="callOption">Call</label>
+
+                    <input type="radio" class="btn-check" name="optionType" id="putOption" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="putOption">Put</label>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <label for="actionType" class="form-label">Action Type</label>
+                  <div class="btn-group" role="group">
+                    <input type="radio" class="btn-check" name="actionType" id="buyAction" autocomplete="off" checked>
+                    <label class="btn btn-outline-success" for="buyAction">Buy</label>
+
+                    <input type="radio" class="btn-check" name="actionType" id="sellAction" autocomplete="off">
+                    <label class="btn btn-outline-danger" for="sellAction">Sell</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-md-3">
+                  <label for="strikePrice" class="form-label">Strike Price</label>
+                  <select class="form-select" id="strikePrice">
+                    <option value="ATM">ATM</option>
+                    <option value="OTM">OTM</option>
+                    <option value="ITM">ITM</option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <label for="totalLot" class="form-label">Total Lot</label>
+                  <input type="number" class="form-control" id="totalLot" value="1">
+                </div>
+                <div class="col-md-3">
+                  <label for="expiryType" class="form-label">Expiry Type</label>
+                  <select class="form-select" id="expiryType">
+                    <option value="Weekly">Weekly</option>
+                    <option value="Monthly">Monthly</option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <button type="submit" class="btn btn-primary mt-4">Add Position</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    © 2024 StockMock. All Rights Reserved.
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
